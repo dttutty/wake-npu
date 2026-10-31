@@ -1,54 +1,6 @@
-# Longer-input measurements / 较长输入测量
+# Longer-input measurements
 
-[简体中文](#zh-cn) | [English](#english)
-
-<a id="zh-cn"></a>
-
-## 简体中文
-
-混合实验扩展了一套独立的 64 位置 ONNX 图，以利用现有 64 行 NPU 编码器中更多有效行，同时保留默认 32 位置图。2026-09-23 测试了五条较长输入，其中两条为段落。所有模式均在目标上限内到达 EOS，表中没有结果因 token 上限而截断。
-
-| 源 token 数（含 EOS） | 图容量 | CPU INT8 CT2 | GPU FP16 | NPU 编码器 + GPU FP16 | 混合路径 token 匹配 FP32 ONNX |
-|---:|---:|---:|---:|---:|---|
-| 19 | 32 | 93 ms | 110 ms | 2761 ms | 是 |
-| 22 | 32 | 95 ms | 91 ms | 2609 ms | 否 |
-| 27 | 32 | 103 ms | 88 ms | 2834 ms | 是 |
-| 40 | 64 | 177 ms | 182 ms | 3310 ms | 是 |
-| 51 | 64 | 244 ms | 225 ms | 3056 ms | 否 |
-
-ONNX 数据为启用剖析后的三次热运行中位数；CPU INT8 为一次预热后四线程贪心运行。计时排除项和经过主机/文件的 NPU 到 GPU 交接与主 README 相同。不同后端有时生成不同数量的 token，因此这里是观测请求延迟，不能视为等工作量硬件吞吐比较。相邻 NPU 运行波动较大，40 与 51 个输入 token 的数据不能解读为单调扩展曲线。
-
-40 token 输入在全部 ONNX 模式下都生成 51 个目标 token。51 token 输入中，GPU 生成 63 个，混合路径生成 62 个（均含 EOS）。最长输入上，混合路径仍约为 GPU FP16 耗时的 14 倍；其 NPU 编码器在三次混合 FP16 计时中平均约 2.80 秒。增加有效输入行未能在当前实现中证明速度优势。这是容量受限的 64 位置翻译，不是上千 token 的 LLM 上下文测试。
-
-### 数值差异
-
-GPU FP32 与 GPU FP16 在五条输入上都匹配 CPU FP32 ONNX token 序列。使用 NPU 编码器的变体在 22 和 51 token 输入上发生分歧，两种 GPU 解码精度均如此。两个案例首次分歧都位于目标步骤 18（从零计数）；共享历史的解码器相对 L2 误差分别约为 1.8% 和 2.5%。很小的隐藏状态差异仍可能改变贪心 token 选择。
-
-例如 22 token 输入中，FP32 ONNX 生成 `in real text`，混合路径生成 `on the actual text`。这些差异记录为数值等价性失败，没有静默放行。未进行人工或语料级翻译质量评估。多数导出 ONNX 输出也与独立 INT8 CTranslate2 不同；权重相同不代表不同数值实现之间逐位或翻译等价。
-
-DirectML 剖析仍未显示 CPU 图执行，K/V 缓冲区保持在 GPU。诊断模式只放宽“首次数值不匹配即停止”的规则，provider 与设备常驻检查仍强制执行。
-
-### 输入与复现
-
-32 位置案例为：
-
-1. 今天我们在办公室讨论了人工智能的发展，以及这项技术将如何改变未来的工作方式。
-2. 为了提高翻译质量，研究人员需要比较不同模型在真实文本上的表现，并仔细分析错误。
-3. 虽然这台电脑可以同时使用图形处理器和神经网络处理器，但是合理分配任务才能真正提高运行效率。
-
-40 token 段落连接案例 1 和 2。51 token 段落将案例 3 与 `我们希望在不连接互联网的情况下，使用这台电脑快速准确地翻译中文和英文，并保护用户的隐私。` 连接。
-
-```powershell
-& .\experiments\hybrid-translation\run.ps1 -Length 64 -Fp16 -RecordMismatches -Repeats 3 -Text '虽然这台电脑可以同时使用图形处理器和神经网络处理器，但是合理分配任务才能真正提高运行效率。我们希望在不连接互联网的情况下，使用这台电脑快速准确地翻译中文和英文，并保护用户的隐私。' -Report .\experiments\hybrid-translation\artifacts\longest_retest.json
-```
-
-原始本地测量位于 `artifacts/long_inputs.json` 与 `artifacts/long_inputs_64.json`，含全部生成片段、EOS 标志、首次差异索引、逐阶段计时和剖析路径。
-
----
-
-<a id="english"></a>
-
-## English
+[English](LONG_INPUTS.md) | [简体中文](LONG_INPUTS.zh-CN.md)
 
 The hybrid experiment was extended to a separate 64-position ONNX graph
 set to use more of the existing 64-row NPU encoder. The default 32-position
