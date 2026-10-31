@@ -1,0 +1,7 @@
+ggml-small.en.bin
+whisper-1.8.4-windows-x64.zip
+whisper-1.8.4-windows-x64/
+jfk.wav
+librispeech-*.flac
+jfk-*.txt
+results/

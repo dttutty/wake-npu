@@ -1,0 +1,82 @@
+[
+  {
+    "sample": "librispeech-1",
+    "split": "test.clean",
+    "dataset_id": "6930-75918-0001",
+    "reference": "THE ENGLISH FORWARDED TO THE FRENCH BASKETS OF FLOWERS OF WHICH THEY HAD MADE A PLENTIFUL PROVISION TO GREET THE ARRIVAL OF THE YOUNG PRINCESS THE FRENCH IN RETURN INVITED THE ENGLISH TO A SUPPER WHICH WAS TO BE GIVEN THE NEXT DAY",
+    "live_captions": "The English forwarded to the French baskets of flowers, of which they had made a plentiful provision to greet the arrival of the young Princess The French, in return, invited the English to a supper, which was to be given. Next day.",
+    "whisper_file": "librispeech-1-vulkan-20260924-173035.txt"
+  },
+  {
+    "sample": "librispeech-1000",
+    "split": "test.clean",
+    "dataset_id": "8455-210777-0028",
+    "reference": "JACK WOULD BECOME EVA'S HAPPY HUSBAND AND WOULD REMAIN AMIDST THE HURRIED DUTIES OF THE EAGER WORLD",
+    "live_captions": "Jack would become Eva's happy husband. And would remain amidst the hurried duties of the eager world",
+    "whisper_file": "librispeech-1000-vulkan-20260924-173041.txt"
+  },
+  {
+    "sample": "librispeech-2000",
+    "split": "test.clean",
+    "dataset_id": "1580-141083-0051",
+    "reference": "ONLY FOR A MINUTE OR SO",
+    "live_captions": "only for a minute or so.",
+    "whisper_file": "librispeech-2000-vulkan-20260924-173047.txt"
+  },
+  {
+    "sample": "librispeech-other-0",
+    "split": "test.other",
+    "dataset_id": "7902-96591-0000",
+    "reference": "I AM FROM THE CUTTER LYING OFF THE COAST",
+    "live_captions": "I'm from the cutter, lying off the coast.",
+    "whisper_file": "librispeech-other-0-vulkan-20260924-173053.txt"
+  },
+  {
+    "sample": "librispeech-other-1000",
+    "split": "test.other",
+    "dataset_id": "3528-168669-0123",
+    "reference": "THE EMPTY COFFIN REMAINS THIS PRODUCED A PAUSE",
+    "live_captions": "The empty coffin remains. This produced a pause",
+    "whisper_file": "librispeech-other-1000-vulkan-20260924-173056.txt"
+  },
+  {
+    "sample": "librispeech-other-2000",
+    "split": "test.other",
+    "dataset_id": "1688-142285-0052",
+    "reference": "AS THEY TURNED UP INTO A SMALL COURT OPENING OUT OF A SQUALID STREET BESSY SAID",
+    "live_captions": "as they turned up into a small court, opening out into a squalid street. Bessie said.",
+    "whisper_file": "librispeech-other-2000-vulkan-20260924-173102.txt"
+  },
+  {
+    "sample": "librispeech-other-100",
+    "split": "test.other",
+    "dataset_id": "7902-96594-0024",
+    "reference": "YES SIR SAID THE MAN HUMBLY SHALL I GO AT ONCE SIR",
+    "live_captions": "Yes, Sir said the man humbly. Shall I go at once, Sir?",
+    "whisper_file": "librispeech-other-100-vulkan-20260924-173348.txt"
+  },
+  {
+    "sample": "librispeech-other-700",
+    "split": "test.other",
+    "dataset_id": "3331-159605-0005",
+    "reference": "I COULD DO SO MUCH FOR ALL AT HOME HOW I SHOULD ENJOY THAT",
+    "live_captions": "I could do so much for all at home. How I should enjoy that",
+    "whisper_file": "librispeech-other-700-vulkan-20260924-173354.txt"
+  },
+  {
+    "sample": "librispeech-other-1500",
+    "split": "test.other",
+    "dataset_id": "3538-163619-0000",
+    "reference": "THERE WAS ONCE ON A TIME A WIDOWER WHO HAD A SON AND A DAUGHTER BY HIS FIRST WIFE",
+    "live_captions": "there was once at a time a widower who had a son and a daughter by his first wife.",
+    "whisper_file": "librispeech-other-1500-vulkan-20260924-173400.txt"
+  },
+  {
+    "sample": "librispeech-other-2700",
+    "split": "test.other",
+    "dataset_id": "2414-128291-0011",
+    "reference": "WANTON AVIDITY BILIOUS ENVY CAREWORN REVENGE POPULACE PRIDE ALL THESE STRUCK MINE EYE",
+    "live_captions": "Want an abduty bilious envy? Care won revenge. Populous pride. All this struck my eye",
+    "whisper_file": "librispeech-other-2700-vulkan-20260924-173406.txt"
+  }
+]
